@@ -203,19 +203,19 @@ const ProjectsSection = () => {
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div>
                 <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-                  7+
+                  20+
                 </div>
                 <div className="text-gray-400">Major Projects</div>
               </div>
               <div>
                 <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-                  3
+                  5
                 </div>
                 <div className="text-gray-400">Countries Served</div>
               </div>
               <div>
                 <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-                  100%
+                  99%
                 </div>
                 <div className="text-gray-400">Client Satisfaction</div>
               </div>

@@ -56,10 +56,10 @@ const ContactSection = () => {
   ];
 
   const budgetRanges = [
-    'Under $5,000',
+    'Under $1,000',
+    '$2,000 - $5,000',
     '$5,000 - $10,000',
-    '$10,000 - $25,000',
-    '$25,000 - $50,000',
+    '$10,000 - $20,000',
     '$50,000+'
   ];
 
@@ -167,28 +167,6 @@ const ContactSection = () => {
                       {social.icon}
                     </a>
                   ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Info */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl blur-xl" />
-              <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-                <h3 className="text-lg font-semibold text-white mb-3">Business Hours</h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between text-gray-400">
-                    <span>Monday - Friday</span>
-                    <span className="text-white">9:00 AM - 6:00 PM</span>
-                  </div>
-                  <div className="flex justify-between text-gray-400">
-                    <span>Saturday</span>
-                    <span className="text-white">10:00 AM - 4:00 PM</span>
-                  </div>
-                  <div className="flex justify-between text-gray-400">
-                    <span>Sunday</span>
-                    <span className="text-white">Closed</span>
-                  </div>
                 </div>
               </div>
             </div>

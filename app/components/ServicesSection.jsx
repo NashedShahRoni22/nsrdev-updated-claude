@@ -117,10 +117,10 @@ const ServicesSection = () => {
                 </div>
 
                 {/* Learn More Link */}
-                <button className={`group/btn flex items-center space-x-2 text-transparent bg-gradient-to-r ${service.gradient} bg-clip-text font-semibold`}>
+                {/* <button className={`group/btn flex items-center space-x-2 text-transparent bg-gradient-to-r ${service.gradient} bg-clip-text font-semibold`}>
                   <span>Learn More</span>
                   <ArrowRight className={`w-4 h-4 text-purple-400 group-hover/btn:translate-x-1 transition-transform`} />
-                </button>
+                </button> */}
               </div>
 
               {/* Corner accent */}

@@ -1,29 +1,6 @@
-"use client";
-import React, { useState } from 'react';
 import { Code, Mail, Phone, MapPin, Github, Linkedin, Twitter, Instagram, Facebook, ArrowRight, Heart, Send } from 'lucide-react';
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
-  const [subscribeStatus, setSubscribeStatus] = useState(null);
-
-  const handleSubscribe = () => {
-    if (!email) {
-      setSubscribeStatus({ type: 'error', message: 'Please enter your email' });
-      return;
-    }
-    
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setSubscribeStatus({ type: 'error', message: 'Please enter a valid email' });
-      return;
-    }
-
-    setSubscribeStatus({ type: 'success', message: 'Thank you for subscribing!' });
-    setTimeout(() => {
-      setEmail('');
-      setSubscribeStatus(null);
-    }, 3000);
-  };
 
   const quickLinks = [
     { name: 'Home', href: '#' },
@@ -176,56 +153,13 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Newsletter Section */}
-        <div className="pb-12">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-2xl blur-xl" />
-            <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-white mb-2">
-                    Subscribe to Our Newsletter
-                  </h3>
-                  <p className="text-gray-400">
-                    Get the latest updates, insights, and exclusive offers delivered to your inbox
-                  </p>
-                </div>
-                <div className="flex-shrink-0 w-full md:w-auto">
-                  <div className="flex gap-2">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email"
-                      className="flex-1 md:w-64 px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
-                    />
-                    <button
-                      onClick={handleSubscribe}
-                      className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl text-white font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 flex items-center space-x-2"
-                    >
-                      <Send className="w-5 h-5" />
-                    </button>
-                  </div>
-                  {subscribeStatus && (
-                    <p className={`mt-2 text-sm ${subscribeStatus.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
-                      {subscribeStatus.message}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Bottom Bar */}
         <div className="border-t border-white/10 py-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-gray-400">
-            <div className="flex items-center space-x-1">
-              <span>© {new Date().getFullYear()} NSR-DEV. All rights reserved. Made with</span>
-              <Heart className="w-4 h-4 text-red-500 fill-current animate-pulse" />
-              <span>in Bangladesh</span>
+            <div className="flex items-center justify-center space-x-1">
+              <span>© {new Date().getFullYear()} NSR-DEV. All rights reserved.</span>
             </div>
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center justify-center space-x-6">
               <a href="#" className="hover:text-purple-400 transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-purple-400 transition-colors">Terms of Service</a>
               <a href="#" className="hover:text-purple-400 transition-colors">Cookie Policy</a>

@@ -5,10 +5,10 @@ const AboutSection = () => {
   const [activeTab, setActiveTab] = useState('mission');
 
   const stats = [
-    { number: '150+', label: 'Projects Completed', icon: <CheckCircle className="w-6 h-6" /> },
-    { number: '50+', label: 'Happy Clients', icon: <Users className="w-6 h-6" /> },
+    { number: '20+', label: 'Projects Completed', icon: <CheckCircle className="w-6 h-6" /> },
+    { number: '10+', label: 'Happy Clients', icon: <Users className="w-6 h-6" /> },
     { number: '5+', label: 'Years Experience', icon: <Clock className="w-6 h-6" /> },
-    { number: '98%', label: 'Client Satisfaction', icon: <Award className="w-6 h-6" /> }
+    { number: '99%', label: 'Client Satisfaction', icon: <Award className="w-6 h-6" /> }
   ];
 
   const values = [
