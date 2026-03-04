@@ -1,45 +1,97 @@
-import { Code, Mail, Phone, MapPin, Github, Linkedin, Twitter, Instagram, Facebook, ArrowRight, Heart, Send } from 'lucide-react';
+import {
+  Code,
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Twitter,
+  Instagram,
+  Facebook,
+  ArrowRight,
+  Heart,
+  Send,
+} from "lucide-react";
+import logo from "@/app/assets/logo.png";
+import Link from "next/link";
+import Image from "next/image";
 
 const Footer = () => {
-
   const quickLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'Services', href: '#services' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' }
+    { name: "Home", href: "#" },
+    { name: "Services", href: "#services" },
+    { name: "About Us", href: "#about" },
+    { name: "Projects", href: "#projects" },
+    { name: "Contact", href: "#contact" },
   ];
 
   const services = [
-    { name: 'Web Development', href: '#services' },
-    { name: 'Mobile App Development', href: '#services' },
-    { name: 'UI/UX Design', href: '#services' },
-    { name: 'Graphics Design', href: '#services' },
-    { name: 'E-Commerce Solutions', href: '#services' },
-    { name: 'Custom Software', href: '#services' }
+    { name: "Web Development", href: "#services" },
+    { name: "Mobile App Development", href: "#services" },
+    { name: "UI/UX Design", href: "#services" },
+    { name: "Graphics Design", href: "#services" },
+    { name: "E-Commerce Solutions", href: "#services" },
+    { name: "Custom Software", href: "#services" },
   ];
 
   const resources = [
-    { name: 'Blog', href: '#' },
-    { name: 'Case Studies', href: '#' },
-    { name: 'Portfolio', href: '#projects' },
-    { name: 'Pricing', href: '#' },
-    { name: 'FAQ', href: '#' },
-    { name: 'Careers', href: '#' }
+    { name: "Blog", href: "#" },
+    { name: "Case Studies", href: "#" },
+    { name: "Portfolio", href: "#projects" },
+    { name: "Pricing", href: "#" },
+    { name: "FAQ", href: "#" },
+    { name: "Careers", href: "#" },
   ];
 
   const socialLinks = [
-    { icon: <Github className="w-5 h-5" />, name: 'Github', href: '#', color: 'hover:bg-gray-700' },
-    { icon: <Linkedin className="w-5 h-5" />, name: 'LinkedIn', href: '#', color: 'hover:bg-blue-600' },
-    { icon: <Twitter className="w-5 h-5" />, name: 'Twitter', href: '#', color: 'hover:bg-sky-500' },
-    { icon: <Instagram className="w-5 h-5" />, name: 'Instagram', href: '#', color: 'hover:bg-pink-600' },
-    { icon: <Facebook className="w-5 h-5" />, name: 'Facebook', href: '#', color: 'hover:bg-blue-700' }
+    {
+      icon: <Github className="w-5 h-5" />,
+      name: "Github",
+      href: "#",
+      color: "hover:bg-gray-700",
+    },
+    {
+      icon: <Linkedin className="w-5 h-5" />,
+      name: "LinkedIn",
+      href: "#",
+      color: "hover:bg-blue-600",
+    },
+    {
+      icon: <Twitter className="w-5 h-5" />,
+      name: "Twitter",
+      href: "#",
+      color: "hover:bg-sky-500",
+    },
+    {
+      icon: <Instagram className="w-5 h-5" />,
+      name: "Instagram",
+      href: "#",
+      color: "hover:bg-pink-600",
+    },
+    {
+      icon: <Facebook className="w-5 h-5" />,
+      name: "Facebook",
+      href: "#",
+      color: "hover:bg-blue-700",
+    },
   ];
 
   const contactInfo = [
-    { icon: <Mail className="w-4 h-4" />, text: 'hello@nsrdev.com', href: 'mailto:hello@nsrdev.com' },
-    { icon: <Phone className="w-4 h-4" />, text: '+1 (555) 123-4567', href: 'tel:+15551234567' },
-    { icon: <MapPin className="w-4 h-4" />, text: 'Dhaka, Bangladesh', href: '#' }
+    {
+      icon: <Mail className="w-4 h-4" />,
+      text: "hello@nsrdev.com",
+      href: "mailto:hello@nsrdev.com",
+    },
+    {
+      icon: <Phone className="w-4 h-4" />,
+      text: "+1 (555) 123-4567",
+      href: "tel:+15551234567",
+    },
+    {
+      icon: <MapPin className="w-4 h-4" />,
+      text: "Dhaka, Bangladesh",
+      href: "#",
+    },
   ];
 
   return (
@@ -54,17 +106,14 @@ const Footer = () => {
           {/* Company Info - Takes 2 columns */}
           <div className="lg:col-span-2">
             {/* Logo */}
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                <Code className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                NSR-DEV
-              </span>
-            </div>
+            <Link href="/">
+              <Image src={logo} alt="NSR DEV Logo" height={100} width={200} />
+            </Link>
 
-            <p className="text-gray-400 mb-6 leading-relaxed">
-              Transforming ideas into exceptional digital experiences. We craft innovative solutions that drive business growth and engage audiences worldwide.
+            <p className="text-gray-400 my-6 leading-relaxed">
+              Transforming ideas into exceptional digital experiences. We craft
+              innovative solutions that drive business growth and engage
+              audiences worldwide.
             </p>
 
             {/* Contact Info */}
@@ -100,7 +149,9 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-6">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-white mb-6">
+              Quick Links
+            </h3>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
@@ -157,12 +208,20 @@ const Footer = () => {
         <div className="border-t border-white/10 py-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-gray-400">
             <div className="flex items-center justify-center space-x-1">
-              <span>© {new Date().getFullYear()} NSR-DEV. All rights reserved.</span>
+              <span>
+                © {new Date().getFullYear()} NSR-DEV. All rights reserved.
+              </span>
             </div>
             <div className="flex items-center justify-center space-x-6">
-              <a href="#" className="hover:text-purple-400 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-purple-400 transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-purple-400 transition-colors">Cookie Policy</a>
+              <a href="#" className="hover:text-purple-400 transition-colors">
+                Privacy Policy
+              </a>
+              <a href="#" className="hover:text-purple-400 transition-colors">
+                Terms of Service
+              </a>
+              <a href="#" className="hover:text-purple-400 transition-colors">
+                Cookie Policy
+              </a>
             </div>
           </div>
         </div>

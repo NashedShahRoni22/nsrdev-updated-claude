@@ -1,6 +1,9 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Code } from 'lucide-react';
+import logo from "@/app/assets/logo.png";
+import Link from 'next/link';
+import Image from 'next/image';
 
 // Navbar Component - Separate and reusable
 const Navbar = () => {
@@ -25,14 +28,9 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-              <Code className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Arvi
-            </span>
-          </a>
+          <Link href="/">
+            <Image src={logo} alt="NSR DEV Logo" height={100} width={200}  />
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
