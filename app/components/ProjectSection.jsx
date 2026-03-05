@@ -1,9 +1,10 @@
+"use client";
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { ExternalLink, Code, Smartphone, ShoppingCart, Building2, Globe, Package, Plane, ArrowRight } from 'lucide-react';
 
 const ProjectsSection = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-  const [hoveredProject, setHoveredProject] = useState(null);
 
   const categories = [
     { id: 'all', label: 'All Projects' },
@@ -98,14 +99,19 @@ const ProjectsSection = () => {
     : projects.filter(project => project.category === activeFilter);
 
   return (
-    <section id="projects" className="relative bg-slate-950 py-24 overflow-hidden">
+    <motion.section id="projects" className="relative bg-slate-950 py-24 overflow-hidden"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } } }}
+    >
       {/* Background decorations */}
       <div className="absolute top-0 right-1/3 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
       <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl" />
       
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <motion.div className="text-center mb-12" variants={{ hidden: { opacity: 0, y: 40, scale: 0.9 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8 } } }}>
           <div className="inline-flex items-center space-x-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full mb-6">
             <span className="text-sm text-purple-300">Our Work</span>
           </div>
@@ -117,12 +123,12 @@ const ProjectsSection = () => {
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Explore our portfolio of successful projects across various industries and platforms
           </p>
-        </div>
+        </motion.div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <motion.div className="flex flex-wrap justify-center gap-3 mb-12" variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, staggerChildren: 0.08 } } }}>
           {categories.map((category) => (
-            <button
+            <motion.button
               key={category.id}
               onClick={() => setActiveFilter(category.id)}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
@@ -130,20 +136,26 @@ const ProjectsSection = () => {
                   ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/50 scale-105'
                   : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10'
               }`}
+              variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } } }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {category.label}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {filteredProjects.map((project, index) => (
-            <div
+            <motion.div
               key={project.id}
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
-              className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden hover:bg-white/10 transition-all duration-500 hover:-translate-y-2"
+              className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden hover:bg-white/10 transition-all duration-500"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -12, scale: 1.05 }}
             >
               {/* Project Image/Icon Area */}
               <div className={`relative h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center overflow-hidden`}>
@@ -168,70 +180,82 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-300">
+                <motion.h3 
+                  className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-300" 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.4 }}
+                >
                   {project.title}
-                </h3>
+                </motion.h3>
 
                 {/* Description */}
-                <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                <motion.p 
+                  className="text-gray-400 text-sm leading-relaxed mb-4" 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.4 }}
+                >
                   {project.description}
-                </p>
+                </motion.p>
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, idx) => (
-                    <span
+                    <motion.span
                       key={idx}
                       className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ duration: 0.4, delay: idx * 0.05 }}
                     >
                       {tag}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </div>
 
               {/* Bottom gradient line */}
               <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${project.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} />
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Stats Footer */}
-        <div className="relative mt-16">
+        <motion.div className="relative mt-16" variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7 } } }}>
           <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-3xl blur-xl" />
           <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12">
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              <div>
-                <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-                  20+
-                </div>
-                <div className="text-gray-400">Major Projects</div>
-              </div>
-              <div>
-                <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-                  5
-                </div>
-                <div className="text-gray-400">Countries Served</div>
-              </div>
-              <div>
-                <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-                  99%
-                </div>
-                <div className="text-gray-400">Client Satisfaction</div>
-              </div>
-            </div>
+            <motion.div className="grid md:grid-cols-3 gap-8 text-center" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}>
+              {[
+                { value: '20+', label: 'Major Projects' },
+                { value: '5', label: 'Countries Served' },
+                { value: '99%', label: 'Client Satisfaction' }
+              ].map((stat, index) => (
+                <motion.div key={index} variants={{ hidden: { opacity: 0, y: 20, scale: 0.9 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6 } } }} whileHover={{ y: -8 }}>
+                  <div>
+                    <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+                      {stat.value}
+                    </div>
+                    <div className="text-gray-400">{stat.label}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
-          <button className="group px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-medium hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 inline-flex items-center space-x-2">
+        <motion.div className="text-center mt-12" variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}>
+          <motion.button className="group px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-medium hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 inline-flex items-center space-x-2" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <span>View All Projects</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

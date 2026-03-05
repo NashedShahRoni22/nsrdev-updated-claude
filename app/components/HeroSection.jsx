@@ -1,4 +1,6 @@
+"use client";
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 
 const HeroSection = () => {
@@ -32,7 +34,16 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 overflow-hidden">
+    <motion.section
+      className="relative min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 overflow-hidden"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={{
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } }
+      }}
+    >
       {/* Animated background gradient */}
       <div 
         className="absolute inset-0 opacity-30"
@@ -64,56 +75,53 @@ const HeroSection = () => {
       <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="flex flex-col">
+          <motion.div className="flex flex-col" variants={{ hidden: { opacity: 0, y: 40, rotateY: 10 }, visible: { opacity: 1, y: 0, rotateY: 0, transition: { duration: 0.9, ease: "easeOut" } } }}>
             {/* Badge */}
-            <div className="inline-flex items-center space-x-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full mb-6 backdrop-blur-sm w-fit">
+            <motion.div className="inline-flex items-center space-x-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full mb-6 backdrop-blur-sm w-fit" initial={{ opacity: 0, scale: 0.8, y: -20 }} whileInView={{ opacity: 1, scale: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
               <Sparkles className="w-4 h-4 text-purple-400" />
               <span className="text-sm text-purple-300">Welcome to NSR-DEV Agency</span>
-            </div>
+            </motion.div>
 
             {/* Main Heading */}
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
+              <motion.span className="block bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}>
                 Crafting Digital
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
+              </motion.span>
+              <motion.span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-pulse" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }}>
                 Experiences
-              </span>
+              </motion.span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xl text-gray-400 max-w-2xl mb-10">
+            <motion.p className="text-xl text-gray-400 max-w-2xl mb-10" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }}>
               We transform ideas into stunning digital solutions. From web development to mobile apps, UI/UX design to graphics - we bring your vision to life.
-            </p>
+            </motion.p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <a href='#contact' className="group px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-medium hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 flex items-center justify-center space-x-2">
+            <motion.div className="flex flex-col sm:flex-row gap-4 mb-10" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, staggerChildren: 0.1 }}>
+              <motion.a href='#contact' className="group px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-medium hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 flex items-center justify-center space-x-2" initial={{ opacity: 0, x: -30, scale: 0.9 }} whileInView={{ opacity: 1, x: 0, scale: 1 }} viewport={{ once: true }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.6, delay: 0.35 }}>
                 <span>Start Your Project</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a href='#projects' className="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-white font-medium hover:bg-white/10 transition-all duration-300">
+              </motion.a>
+              <motion.a href='#projects' className="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-white font-medium hover:bg-white/10 transition-all duration-300" initial={{ opacity: 0, x: 30, scale: 0.9 }} whileInView={{ opacity: 1, x: 0, scale: 1 }} viewport={{ once: true }} whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }} transition={{ duration: 0.6, delay: 0.45 }}>
                 View Our Work
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
 
             {/* Social Links */}
-            <div className="flex items-center space-x-6">
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                <Github className="w-6 h-6" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                <Linkedin className="w-6 h-6" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-                <Mail className="w-6 h-6" />
-              </a>
-            </div>
-          </div>
+            <motion.div className="flex items-center space-x-6" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.5 }}>
+              {[1, 2, 3].map((i, idx) => (
+                <motion.a key={idx} href="#" className="text-gray-400 hover:text-purple-400 transition-colors" initial={{ opacity: 0, scale: 0.6 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} whileHover={{ scale: 1.2, color: '#a78bfa' }} transition={{ duration: 0.4, delay: 0.5 + idx * 0.1 }}>
+                  {i === 1 && <Github className="w-6 h-6" />}
+                  {i === 2 && <Linkedin className="w-6 h-6" />}
+                  {i === 3 && <Mail className="w-6 h-6" />}
+                </motion.a>
+              ))}
+            </motion.div>
+          </motion.div>
 
           {/* Right Content - 3D Digital Transformation Visual (visible on lg+) */}
-          <div className="hidden lg:flex items-center justify-center perspective-1000">
+          <motion.div className="hidden lg:flex items-center justify-center perspective-1000" variants={{ hidden: { opacity: 0, x: 80, rotateY: -20 }, visible: { opacity: 1, x: 0, rotateY: 0, transition: { duration: 1.1, ease: "easeOut" } } }}>
             <div className="relative w-full h-[600px]" style={{ perspective: '1000px' }}>
               {/* Central 3D glowing sphere representing "ideas" */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 preserve-3d">
@@ -234,7 +242,7 @@ const HeroSection = () => {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           <style>{`
             @keyframes rotate3d {
@@ -277,7 +285,7 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

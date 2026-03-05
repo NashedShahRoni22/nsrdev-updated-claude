@@ -1,4 +1,6 @@
+"use client";
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Code, Smartphone, Layout, Palette, Zap, Shield, Rocket, Users, ArrowRight } from 'lucide-react';
 
 const ServicesSection = () => {
@@ -63,14 +65,19 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="relative bg-slate-950 py-24 overflow-hidden">
+    <motion.section id="services" className="relative bg-slate-950 py-24 overflow-hidden"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } } }}
+    >
       {/* Background decorations */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl" />
       
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div className="text-center mb-16" variants={{ hidden: { opacity: 0, y: 40, scale: 0.9 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8 } } }}>
           <div className="inline-flex items-center space-x-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full mb-6">
             <span className="text-sm text-purple-300">What We Offer</span>
           </div>
@@ -82,16 +89,33 @@ const ServicesSection = () => {
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Comprehensive digital solutions tailored to transform your business and engage your audience
           </p>
-        </div>
+        </motion.div>
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 gap-8 mb-20">
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="group relative p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl hover:bg-white/10 transition-all duration-500 hover:-translate-y-2"
+              className="group relative p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl hover:bg-white/10 transition-all duration-500"
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  y: 40,
+                  rotateY: index % 2 === 0 ? 15 : -15,
+                  x: index % 2 === 0 ? -20 : 20
+                },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  rotateY: 0,
+                  x: 0,
+                  transition: { duration: 0.8, delay: index * 0.12 }
+                }
+              }}
+              whileHover={{ scale: 1.05, y: -12 }}
+              transition={{ type: 'spring', stiffness: 130 }}
             >
               {/* Gradient overlay on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${service.bgGradient} opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500`} />
@@ -107,14 +131,14 @@ const ServicesSection = () => {
                 <p className="text-gray-400 mb-6 leading-relaxed">{service.description}</p>
 
                 {/* Features */}
-                <div className="grid grid-cols-2 gap-3 mb-6">
+                <motion.div className="grid grid-cols-2 gap-3 mb-6" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, staggerChildren: 0.08, delayChildren: 0.3 }}>
                   {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center space-x-2">
+                    <motion.div key={idx} className="flex items-center space-x-2" initial={{ opacity: 0, x: -15 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
                       <div className={`w-1.5 h-1.5 bg-gradient-to-r ${service.gradient} rounded-full`} />
                       <span className="text-sm text-gray-300">{feature}</span>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
 
                 {/* Learn More Link */}
                 {/* <button className={`group/btn flex items-center space-x-2 text-transparent bg-gradient-to-r ${service.gradient} bg-clip-text font-semibold`}>
@@ -125,40 +149,40 @@ const ServicesSection = () => {
 
               {/* Corner accent */}
               <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-20 blur-2xl rounded-full transition-opacity duration-500`} />
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Benefits Section */}
-        <div className="relative">
+        <motion.div className="relative" variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8 } } }}>
           <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-3xl blur-xl" />
           <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12">
             <h3 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
               Why Choose NSR-DEV?
             </h3>
-            <div className="grid md:grid-cols-4 gap-8">
+            <motion.div className="grid md:grid-cols-4 gap-8" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0 } } }}>
               {benefits.map((benefit, index) => (
-                <div key={index} className="text-center group">
+                <motion.div key={index} className="text-center group" variants={{ hidden: { opacity: 0, y: 20, scale: 0.9 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6 } } }} whileHover={{ y: -8, scale: 1.05 }}>
                   <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
                     {benefit.icon}
                   </div>
                   <h4 className="text-lg font-semibold text-white mb-2">{benefit.title}</h4>
                   <p className="text-sm text-gray-400">{benefit.description}</p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* CTA */}
-        <div className="text-center mt-16">
-          <button className="group px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-medium hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 inline-flex items-center space-x-2">
+        <motion.div className="text-center mt-16" variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}>
+          <motion.button className="group px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-medium hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 inline-flex items-center space-x-2" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <span>Start Your Project</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

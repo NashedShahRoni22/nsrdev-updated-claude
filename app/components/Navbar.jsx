@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Menu, X, Code } from 'lucide-react';
 import logo from "@/app/assets/logo.png";
 import Link from 'next/link';
@@ -24,7 +25,12 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/80 backdrop-blur-lg border-b border-purple-500/10' : ''}`}>
+    <motion.nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/80 backdrop-blur-lg border-b border-purple-500/10' : ''}`}
+      initial={{ y: -18, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -76,7 +82,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

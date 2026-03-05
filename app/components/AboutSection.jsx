@@ -1,4 +1,6 @@
+"use client";
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Target, Eye, Award, TrendingUp, Users, Clock, CheckCircle, Sparkles } from 'lucide-react';
 
 const AboutSection = () => {
@@ -78,14 +80,19 @@ const AboutSection = () => {
   };
 
   return (
-    <section id="about" className="relative bg-gradient-to-b from-slate-950 to-slate-900 py-24 overflow-hidden">
+    <motion.section id="about" className="relative bg-gradient-to-b from-slate-950 to-slate-900 py-24 overflow-hidden"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } } }}
+    >
       {/* Background decorations */}
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl" />
       
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div className="text-center mb-16" variants={{ hidden: { opacity: 0, y: 30, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8 } } }}>
           <div className="inline-flex items-center space-x-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full mb-6">
             <span className="text-sm text-purple-300">About Us</span>
           </div>
@@ -97,14 +104,17 @@ const AboutSection = () => {
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             A passionate team dedicated to crafting exceptional digital experiences that drive success
           </p>
-        </div>
+        </motion.div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+        <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20" variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, staggerChildren: 0.1 } } }}>
           {stats.map((stat, index) => (
-            <div
+            <motion.div
               key={index}
               className="group relative p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-white/10 transition-all duration-300 text-center"
+              variants={{ hidden: { opacity: 0, y: 20, scale: 0.9 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, delay: index * 0.08 } } }}
+              whileHover={{ y: -10, scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 120 }}
             >
               <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
                 {stat.icon}
@@ -113,12 +123,12 @@ const AboutSection = () => {
                 {stat.number}
               </div>
               <div className="text-sm text-gray-400">{stat.label}</div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Mission/Vision/Approach Tabs */}
-        <div className="mb-20">
+        <motion.div className="mb-20" variants={{ hidden: { opacity: 0, y: 40, rotateX: 15 }, visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.9 } } }}>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             {tabs.map((tab) => (
               <button
@@ -157,35 +167,74 @@ const AboutSection = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Core Values */}
-        <div>
-          <h3 className="text-3xl font-bold text-center mb-12">
+        <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.9, staggerChildren: 0.1 } } }}>
+          <motion.h3 
+            className="text-3xl font-bold text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+          >
             <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
               Our Core Values
             </span>
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          </motion.h3>
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } }
+            }}
+          >
             {values.map((value, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="group relative p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-white/10 transition-all duration-500 hover:-translate-y-2"
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5 }}
+                whileHover={{ y: -15, scale: 1.05 }}
               >
-                <div className={`w-14 h-14 mb-4 bg-gradient-to-br ${value.color} rounded-xl flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
+                <motion.div 
+                  className={`w-14 h-14 mb-4 bg-gradient-to-br ${value.color} rounded-xl flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}
+                  whileHover={{ scale: 1.2, rotate: 8 }}
+                >
                   {value.icon}
-                </div>
-                <h4 className="text-xl font-bold text-white mb-3">{value.title}</h4>
-                <p className="text-sm text-gray-400 leading-relaxed">{value.description}</p>
+                </motion.div>
+                <motion.h4 
+                  className="text-xl font-bold text-white mb-3"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.4, delay: 0.15 }}
+                >
+                  {value.title}
+                </motion.h4>
+                <motion.p 
+                  className="text-sm text-gray-400 leading-relaxed"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                >
+                  {value.description}
+                </motion.p>
                 
                 {/* Hover gradient overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`} />
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
